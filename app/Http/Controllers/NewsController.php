@@ -19,19 +19,17 @@ class NewsController extends Controller
     ];
     public function index()
     {
-        foreach ($this->categories as $key => $category) {
-            $url = route('news-directories').'/'.$key;
-            echo "<div><a href='{$url}'>{$category}</a></div>";
-        }
+        return view('news.index', ['categories' => $this->categories]);
     }
 
     public function news($key)
     {
-        return view('news', [
+        return view('news.news',
+            [
             'name' => $key,
             'nameRU' => $this->categories[$key],
             'newsOne' => $this->news[$key],
-        ]);
+            ]);
 
     }
 }
