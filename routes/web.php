@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\NewsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    echo ('Hello');
+});
+
+
+Route::group([
+    'prefix' => '/news',
+], function () {
+    Route::get('/', [NewsController::class, 'index'])
+    ->name('news-directories');
+    Route::get('/{key}', [NewsController::class, 'news'])
+    ->name('news-one');
+
 });
