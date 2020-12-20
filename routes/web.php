@@ -24,6 +24,7 @@ Route::group([
     Route::get('/', [NewsController::class, 'index'])
     ->name('news-directories');
     Route::get('/{key}', [NewsController::class, 'news'])
-    ->name('news-one');
+    ->name('news-one')
+    ->where('id', '[0-9]+');
 
 });
