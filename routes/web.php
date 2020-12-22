@@ -23,8 +23,10 @@ Route::group([
 ], function () {
     Route::get('/', [NewsController::class, 'index'])
     ->name('news-directories');
-    Route::get('/{key}', [NewsController::class, 'news'])
+    Route::get('/card/{id}', [NewsController::class, 'news'])
     ->name('news-one')
     ->where('id', '[0-9]+');
+    Route::get('/{$categoryId}', [NewsController::class, 'categories'])
+    ->name('news::category');
 
 });

@@ -35,12 +35,26 @@ class News extends Model
             'id' => 4,
             'title' => 'news 4',
             'content' => 'news 5 content',
-            'category_id' => 5
+            'category_id' =>3
         ],
     ];
-
-    public function getById(int $key)
+    public function getById(int $id)
     {
-        return
+//        dd($this->news[$id]);
+        return $this->news[$id];
+    }
+
+    public function getByCategoryId(int $categoryId)
+    {
+        $news = [];
+        foreach ($this->news as $key => $items) {
+            if ($items['category_id'] == $categoryId)
+            {
+                $news[$key] = $items;
+
+            }
+        }
+        return $news;
+
     }
 }
