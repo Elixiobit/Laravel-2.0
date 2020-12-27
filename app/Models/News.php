@@ -47,10 +47,10 @@ class News extends Model
     public function getByCategoryId(int $categoryId)
     {
         $news = [];
-        foreach ($this->news as $key => $items) {
+        foreach ($this->news as $id => $items) {
             if ($items['category_id'] == $categoryId)
             {
-                $news[$key] = $items;
+                $news[$id] = $items;
 
             }
         }

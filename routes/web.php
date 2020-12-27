@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\RegController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 /*
@@ -14,7 +15,7 @@ use App\Http\Controllers\NewsController;
 */
 
 Route::get('/', function () {
-    echo ('Hello');
+    echo 'Hello';
 });
 
 
@@ -30,3 +31,39 @@ Route::group([
     ->name('news::category');
 
 });
+
+
+    /**
+     * Админка новостей
+     */
+Route::group([
+    'prefix' => '/admin/news',
+    'as' => 'admin::news::',
+    'namespace' => '\App\Http\Controllers\Admin\News'
+], function () {
+    Route::get('/', 'NewsController@index')
+        ->name('index');
+
+    Route::get('/create', 'NewsController@createView')
+        ->name('create');
+
+    Route::post('/create', 'NewsController@create')
+        ->name('create_action');
+
+    Route::get('/update', 'NewsController@update')
+        ->name('update');
+});
+
+Route::group([
+    'prefix' => '/reg',
+    'as' => 'user::reg::'
+//    'namespace' => '\App\Http\Controllers\Admin\News'
+],function (){
+    Route::get('/', [RegController::class, 'index']);
+    Route::get('/form', [RegController::class, 'createForm'])
+        ->name('create');
+
+    Route::post('/form', [RegController::class, 'formSubmit'])
+        ->name('form');
+}
+);
