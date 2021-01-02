@@ -21,21 +21,39 @@ Route::get('/', function () {
 
 Route::group([
     'prefix' => '/news',
+    'as' => 'news::'
 ], function () {
     Route::get('/', [NewsController::class, 'index'])
-    ->name('news-directories');
+    ->name('categories');
     Route::get('/card/{id}', [NewsController::class, 'news'])
-    ->name('news-one')
+    ->name('one')
     ->where('id', '[0-9]+');
-    Route::get('/{$categoryId}', [NewsController::class, 'categories'])
-    ->name('news::category');
+    Route::get('/{categoryId}', [NewsController::class, 'categories'])
+    ->name('listNews');
 
 });
 
 
-    /**
-     * Админка новостей
-     */
+/**
+ * Регистриция пользователей
+ */
+Route::group([
+    'prefix' => '/reg',
+    'as' => 'user::reg::'
+],function (){
+    Route::get('/', [RegController::class, 'index']);
+    Route::get('/form', [RegController::class, 'createForm'])
+        ->name('create');
+
+    Route::post('/form', [RegController::class, 'formSubmit'])
+        ->name('form');
+}
+);
+
+
+/**
+ * Админка новостей
+ */
 Route::group([
     'prefix' => '/admin/news',
     'as' => 'admin::news::',
@@ -53,17 +71,3 @@ Route::group([
     Route::get('/update', 'NewsController@update')
         ->name('update');
 });
-
-Route::group([
-    'prefix' => '/reg',
-    'as' => 'user::reg::'
-//    'namespace' => '\App\Http\Controllers\Admin\News'
-],function (){
-    Route::get('/', [RegController::class, 'index']);
-    Route::get('/form', [RegController::class, 'createForm'])
-        ->name('create');
-
-    Route::post('/form', [RegController::class, 'formSubmit'])
-        ->name('form');
-}
-);

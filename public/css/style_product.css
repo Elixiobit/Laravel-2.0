@@ -68,7 +68,7 @@ body {
 
 .main{
     width: 1136px;
-    margin-left: 98px;
+    /*margin-left: 98px;*/
     justify-content: space-between;
     text-align: center;
 }
@@ -151,13 +151,13 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
-span{
-    color: #212121;
-    font-size: 36px;
-    font-weight: 300;
-    font-size: 72px;
-    text-transform: uppercase;
-}
+/*span{*/
+/*    color: #212121;*/
+/*    font-size: 36px;*/
+/*    font-weight: 300;*/
+/*    font-size: 72px;*/
+/*    text-transform: uppercase;*/
+/*}*/
 
 .cost{
     font-size: 36px;

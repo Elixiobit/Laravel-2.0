@@ -18,7 +18,7 @@
     </div>
 </div>
 <div class="footer-footer">
-    <p>© Copyright - {{$yearNow = date('Y')}}  . All Rights Reserved.</p>
+    <p>© Copyright - {{date('Y')}}  . All Rights Reserved.</p>
 </div>
 </body>
 </html>

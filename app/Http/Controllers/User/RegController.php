@@ -20,7 +20,7 @@ class RegController extends Controller
 
     public function formSubmit(Request $request)
     {
-//        dump($request->only('secondName')); exit;
+        echo 'Сохранили!!!';
         return redirect()->route('user::reg::create');
     }
 }
