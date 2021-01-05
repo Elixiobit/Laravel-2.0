@@ -3,45 +3,34 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
-//use Illuminate\Http\Request;
-//use phpDocumentor\Reflection\Types\This;
 
 class NewsController extends Controller
 {
-    public $categories = [
-        '1' => [
-            'ru' => 'Политика',
-            'eu' => 'policy',
-            ],
-        '2' => [
-            'ru' => 'Экономика',
-            'eu' => 'economy',
-        ],
-        '3' => [
-            'ru' => 'Мировые новости',
-            'eu' => 'world_news',
-        ]
-    ];
-
-
     public function index()
     {
-        return response(view('news.index', ['categories' => $this->categories]))
-            ->header('TEST', 'test');
+        $categories = (new News())->getCategories();
+        return response(view(
+            'news.index',
+            [
+                'categories' => $categories,
+            ]))
+            ->header('TEST', 'test'); // оставил как пример
     }
 
-    public function categories($categoryId)
+    public function categories(int $categoryId)
     {
-        $newsList = (new News())->getByCategoryId($categoryId);
+        $news = new News();
+        $newsList = $news->getByCategoryId($categoryId);
+        $categories = $news->getCategory($categoryId);
         return view(
             'news.list',
             [
                 'newsList' => $newsList,
-                'categories' => $this->categories[$categoryId]['ru']
+                'categories' => $categories,
             ]);
     }
 
-    public function news($id)
+    public function news(int $id)
     {
         $newsOne = (new News())->getById($id);
         return view('news.news', ['newsOne' => $newsOne]);

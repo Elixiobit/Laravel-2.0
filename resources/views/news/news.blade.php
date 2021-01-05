@@ -2,8 +2,7 @@
 
 @section('content')
     @if($newsOne)
-        <h1>{{$newsOne['title']}}</h1>
-        <p>{{$newsOne['content']}}</p>
-
+        <h1>{{$newsOne->tittle}}</h1><br>
+        <p>{{$newsOne->content}}</p><br>
     @endif
 @endsection

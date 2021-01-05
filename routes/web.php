@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DbController;
 use App\Http\Controllers\User\RegController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
@@ -29,7 +30,8 @@ Route::group([
     ->name('one')
     ->where('id', '[0-9]+');
     Route::get('/{categoryId}', [NewsController::class, 'categories'])
-    ->name('listNews');
+    ->name('listNews')
+    ->where('categoryId', '[0-9]+');
 
 });
 
@@ -71,3 +73,5 @@ Route::group([
     Route::get('/update', 'NewsController@update')
         ->name('update');
 });
+
+Route::get('/laradb', [DbController::class, 'index']);
