@@ -10,8 +10,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="header">
-    </div>
+    <div class="header"><h1>Интерфейс администратора</h1></div>
     <div class="main">
         @yield('content')
     </div>
@@ -21,3 +20,4 @@
 </div>
 </body>
 </html>
+

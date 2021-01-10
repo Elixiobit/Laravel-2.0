@@ -4,6 +4,8 @@ use App\Http\Controllers\DbController;
 use App\Http\Controllers\User\RegController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,19 +21,24 @@ Route::get('/', function () {
     echo 'Hello';
 });
 
-
+/**
+ * Пользовательский интерфейс
+ */
 Route::group([
     'prefix' => '/news',
     'as' => 'news::'
 ], function () {
     Route::get('/', [NewsController::class, 'index'])
-    ->name('categories');
-    Route::get('/card/{id}', [NewsController::class, 'news'])
+        ->name('categories');
+//    Route::get('/card/{news}', [NewsController::class, 'news']) //вариант 1
+//    ->name('one')
+//    ->where('news', '[0-9]+');
+    Route::get('/card/{id}', [NewsController::class, 'news']) //вариант 2
     ->name('one')
-    ->where('id', '[0-9]+');
-    Route::get('/{categoryId}', [NewsController::class, 'categories'])
+        ->where('id', '[0-9]+');
+    Route::get('/{categories}', [NewsController::class, 'categories']) //по умолчанию счет по id
     ->name('listNews')
-    ->where('categoryId', '[0-9]+');
+        ->where('categories', '[0-9]+');
 
 });
 
@@ -42,7 +49,7 @@ Route::group([
 Route::group([
     'prefix' => '/reg',
     'as' => 'user::reg::'
-],function (){
+], function () {
     Route::get('/', [RegController::class, 'index']);
     Route::get('/form', [RegController::class, 'createForm'])
         ->name('create');
@@ -57,20 +64,23 @@ Route::group([
  * Админка новостей
  */
 Route::group([
-    'prefix' => '/admin/news',
-    'as' => 'admin::news::',
-    'namespace' => '\App\Http\Controllers\Admin\News'
+    'prefix' => '/admin',
+    'as' => 'admin::',
+    'namespace' => 'App\Http\Controllers\Admin'
 ], function () {
     Route::get('/', 'NewsController@index')
-        ->name('index');
+        ->name('news');
 
     Route::get('/create', 'NewsController@createView')
-        ->name('create');
+        ->name('createView');
 
     Route::post('/create', 'NewsController@create')
-        ->name('create_action');
+        ->name('create');
 
-    Route::get('/update', 'NewsController@update')
+    Route::get('/update/{id}', 'NewsController@updateView')
+        ->name('updateView');
+
+    Route::post('/update/{id}', 'NewsController@update')
         ->name('update');
 });
 

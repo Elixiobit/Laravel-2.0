@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class NewsSeeder extends Seeder
 {
@@ -13,17 +14,18 @@ class NewsSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('categories')
-            ->insert($this->getDataCategory());
-        \DB::table('news')
-            ->insert($this->getDataNews());
+        for ($i = 0; $i < 30; $i++){
+            \DB::table('news')
+                ->insert($this->getDataNews());
+        }
+
     }
 
     protected function getDataNews(): array
     {
         $data = [];
         $data[] = [
-            'tittle' => 'News'. uniqid(),
+            'tittle' => uniqid('News'),
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                             Morbi sed tristique purus. Morbi consequat suscipit leo,
                             sit amet volutpat tellus eleifend at. Duis mattis vitae nulla
@@ -32,19 +34,9 @@ class NewsSeeder extends Seeder
                             Ut ut euismod nulla. Donec a mauris nisl. Quisque gravida a arcu
                             ac fermentum. Curabitur odio mi, dignissim eu dolor eu,
                             ultricies dapibus mauris.',
-            'category_id' => '3',
-            'publish_date' => date('Y-m-d'),
-            'created_at' => date('Y-m-d'),
-        ];
-        return $data;
-    }
-
-    protected function getDataCategory():array
-    {
-        $data = [];
-        $data[] = [
-            'categories' => 'Мировые новости"',
-            'created_at' => date('Y-m-d'),
+            'category_id' => (int) rand(1, 3),
+            'publish_date' => date('Y-m-d H:i:s'),
+            'created_at' => date('Y-m-d H:i:s'),
         ];
         return $data;
     }

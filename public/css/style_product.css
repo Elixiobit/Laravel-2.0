@@ -21,11 +21,7 @@ body {
     list-style-type: none;
 }
 .header{
-    max-width: 1100px;
-    min-width: 800px;
-    display: flex;
-    justify-content: space-between;
-    padding-left: 98px;
+    text-align: center;
     margin-bottom: 20px;
 }
 .menu-top{

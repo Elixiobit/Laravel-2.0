@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Database\Seeders\CategorySeeder;
+use Database\Seeders\NewsSeeder;
 
 class CreateLrvdbnewsTable extends Migration
 {
@@ -15,11 +17,12 @@ class CreateLrvdbnewsTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('categories')
+            $table->string('categories', 50)
                 ->unique();
             $table->timestamps();
             $table->softDeletes();
         });
+        (new CategorySeeder())->run();
 
         Schema::create('news', function (Blueprint $table) {
             $table->id();
@@ -38,6 +41,7 @@ class CreateLrvdbnewsTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
         });
 
+        (new NewsSeeder())->run();
 
     }
 
