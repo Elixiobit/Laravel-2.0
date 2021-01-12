@@ -1,7 +1,11 @@
 @extends('layouts.mainAdmin')
 
 @section('content')
-
+    @if (session('success'))
+        <div style="color:red">
+            {{ session('success') }}
+        </div>
+    @endif
     <h1>{{$operation}}</h1>
     <form
         @if(!empty($oneNews))

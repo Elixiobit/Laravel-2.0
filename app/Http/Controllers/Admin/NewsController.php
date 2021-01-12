@@ -23,7 +23,8 @@ class NewsController extends Controller
         $news = (new News())
             ->fill($request->all())
             ->save();
-        return redirect()->route('admin::createView');
+        return redirect()->route('admin::createView')
+            ->with('success', "Новость добалена");
     }
 
     public function createView()
@@ -40,7 +41,8 @@ class NewsController extends Controller
     public function update(Request $request, News $id)
     {
         $id->fill($request->all())->save();
-        return redirect()->route('admin::updateView', ['id' => $id->id]);
+        return redirect()->route('admin::updateView', ['id' => $id->id])
+            ->with('success', "Данные сохранены");
     }
 
     public function updateView(News $id)
