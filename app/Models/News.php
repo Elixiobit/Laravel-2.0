@@ -50,7 +50,8 @@ class News extends Model
 
     public function getNews()
     {
-        return News::all();
+        return News::simplePaginate(10);
+
     }
 
     public function getById(int $id)
