@@ -14,8 +14,10 @@
         $urlNew = route('admin::create');
     @endphp
     <p>
-        <a href="{{$urlNew}}"><input class="button" type="button"  value="Добавить новость"></a>
+        <a href="{{$urlNew}}">
+            <input class="button" type="button"  value="Добавить новость">
+        </a>
     </p>
-    {{$news->links()}}
+    {{$news->links('vendor.pagination.bootstrap-4')}}
 
 @endsection

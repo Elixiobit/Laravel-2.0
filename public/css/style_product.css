@@ -12,9 +12,9 @@ body {
 }
 .container{
     min-width: 1000px;
-    max-width: 1366px;
+
     margin: 0 auto;
-    /*min-height: 100%;*/
+    min-height: 100%;
 }
 
 .header li{

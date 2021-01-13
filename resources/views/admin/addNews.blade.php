@@ -76,7 +76,7 @@
             >
         </label>
         <br>
-        <p>
+        <p style="text-align: center">
             <input type="submit" value="Сохранить">
         </p>
     </form>

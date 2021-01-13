@@ -50,7 +50,7 @@ class News extends Model
 
     public function getNews()
     {
-        return News::simplePaginate(10);
+        return News::paginate(5);
 
     }
 
