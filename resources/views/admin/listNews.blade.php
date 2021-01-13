@@ -15,12 +15,6 @@
                 <input type="submit" value="Удалить">
             </a>
         </p>
-{{--        <form action="{{route('admin::delete', ['id' => $oneNews->id])}}" method="post">--}}
-{{--            @csrf--}}
-{{--            <p style="text-align: center">--}}
-{{--                <input type="submit" value="Удалить">--}}
-{{--            </p>--}}
-{{--        </form>--}}
     @empty
         <h2>Пусто</h2>
     @endforelse

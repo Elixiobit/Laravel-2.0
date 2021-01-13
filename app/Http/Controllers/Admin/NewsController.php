@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminValidationCreateNews;
 use App\Models\Category;
 use App\Models\News;
 use App\Models\Source;
@@ -13,13 +14,24 @@ class NewsController extends Controller
     public function index()
     {
         $news = (new News())->getNews();
-        return view('admin.listNews',[
+        return view('admin.listNews', [
             'news' => $news,
         ]);
     }
 
-    public function create(Request $request)
+    public function create(AdminValidationCreateNews $request)
     {
+//        $rules = [
+//            'title' => 'required|min:10|max:255|unique:news',
+//            'content' => 'required',
+//            'category_id' => 'required|exists:categories,id|integer',
+//            'source_id' => 'required|exists:categories,id|integer',
+//            'active' => 'boolean',
+//            'publish_date' => 'date'
+//        ];
+//
+//        $this->validate($request, $rules);
+
         $news = (new News())
             ->fill($request->all())
             ->save();
@@ -31,7 +43,7 @@ class NewsController extends Controller
     {
         $categories = (new Category())->getCategories();
         $sources = (new Source())->getSource();
-        return view('admin.addNews',[
+        return view('admin.addNews', [
             'operation' => 'Довавить новость',
             'categories' => $categories,
             'sources' => $sources,
@@ -49,7 +61,7 @@ class NewsController extends Controller
     {
         $categories = (new Category())->getCategories();
         $sources = (new Source())->getSource();
-        return view('admin.addNews',[
+        return view('admin.addNews', [
             'oneNews' => $id,
             'operation' => 'Редактировать новость',
             'categories' => $categories,

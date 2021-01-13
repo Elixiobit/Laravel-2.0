@@ -17,16 +17,22 @@
         @csrf
         <label>
             <h4>Название новости</h4>
-            <input name="tittle" value="{{$oneNews->tittle ?? ''}}" required>
+            <input name="tittle" value="{{$oneNews->tittle ?? ''}}">
         </label>
+        @error('title')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         <br>
         <label for="content">
             <h4>Описание</h4>
         </label>
-        <textarea id="content" name="content" required>{{$oneNews->content ?? ''}}</textarea>
+        <textarea id="content" name="content">{{$oneNews->content ?? ''}}</textarea>
+        @error('content')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         <br>
         <label for="category">Категория</label>
-        <select id="category" name="category_id" required>
+        <select id="category" name="category_id">
             @foreach($categories as $category)
                 <option
                     value="{{$category->id}}"
@@ -40,7 +46,7 @@
         </select>
         <br>
         <label for="source">Источник</label>
-        <select id="source" name="source_id" required>
+        <select id="source" name="source_id">
             @foreach($sources as $nameSource)
                 <option
                     value="{{$nameSource->id}}"
@@ -57,8 +63,8 @@
         <input id="publish_date" value='{{$oneNews->publish_date ?? ''}}' name="publish_date"
                @if(empty($oneNews))
                type="datetime-local"
-               @endif
-               required>
+            @endif
+        >
         <br>
         <h4>Новость активна?</h4>
         <label>Да

@@ -50,7 +50,8 @@ class News extends Model
 
     public function getNews()
     {
-        return News::paginate(5);
+        return News::orderBy('publish_date', 'desc')
+            ->paginate(5);
 
     }
 
