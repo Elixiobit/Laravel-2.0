@@ -82,6 +82,9 @@ Route::group([
 
     Route::post('/update/{id}', 'NewsController@update')
         ->name('update');
+
+    Route::get('/delete/{id}', 'NewsController@delete')
+        ->name('delete');
 });
 
 Route::get('/laradb', [DbController::class, 'index']);

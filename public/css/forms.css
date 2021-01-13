@@ -8,7 +8,7 @@ form
   max-width: 800px;
   padding: 0px 30px;
   margin: auto;
-  text-align:left; /* Расположение текста внутри элемента*/
+  text-align:center; /* Расположение текста внутри элемента*/
 }
 
 form input:required

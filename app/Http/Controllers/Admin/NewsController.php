@@ -56,4 +56,10 @@ class NewsController extends Controller
             'sources' => $sources,
         ]);
     }
+
+    public function delete($id)
+    {
+        News::destroy([$id]);
+        return redirect()->route('admin::news');
+    }
 }
