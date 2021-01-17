@@ -14,7 +14,7 @@
 {{--    @include('blocks.menu')--}}
 {{--</div>--}}
 <div class="container">
-    <div class="header"><h1>{{__('title.pageAdmin')}}</h1></div>
+    <div class="header"><h1>{{__('namePage.pageAdmin')}}</h1></div>
     <div class="main">
         @yield('content')
     </div>
