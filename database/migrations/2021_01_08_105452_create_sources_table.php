@@ -20,7 +20,7 @@ class CreateSourcesTable extends Migration
             $table->string('name_source',100);
             $table->timestamps();
         });
-        (new SourceSeeder()) -> run();
+//        (new SourceSeeder()) -> run();  - плохая практика.
     }
 
     /**

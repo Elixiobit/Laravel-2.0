@@ -20,7 +20,7 @@ class AlterTableNewsAddSource extends Migration
                 ->nullable();
             $table->foreign('source_id')->references('id')->on('sources');
         });
-        (new NewsSourceIdSeeder())->run();
+//        (new NewsSourceIdSeeder())->run(); - плохая практика.
 
     }
 

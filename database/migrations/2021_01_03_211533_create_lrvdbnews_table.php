@@ -41,7 +41,7 @@ class CreateLrvdbnewsTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
         });
 
-        (new NewsSeeder())->run();
+//        (new NewsSeeder())->run(); - плохая практика.
 
     }
 
