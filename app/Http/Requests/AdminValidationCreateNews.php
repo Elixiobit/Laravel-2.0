@@ -15,7 +15,7 @@ class AdminValidationCreateNews extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:10|max:255|unique:news',
+            'tittle' => 'required|min:10|max:255|unique:news',
             'content' => 'required',
             'category_id' => 'required|exists:categories,id|integer',
             'source_id' => 'required|exists:sources,id|integer',
@@ -28,7 +28,8 @@ class AdminValidationCreateNews extends FormRequest
     {
         return
         [
-            'title' => 'Название новости'
+            'tittle' => 'Название новости',
+            'content'=> 'Описание',
         ];
     }
 }

@@ -1,26 +1,28 @@
 @extends('layouts.mainAdmin')
 
 @section('content')
+
     @if (session('success'))
         <div style="color:red">
             {{ session('success') }}
         </div>
     @endif
+
     <h1>{{$operation}}</h1>
     <form
         @if(!empty($oneNews))
-        action="{{route('admin::update', ['id' => $oneNews->id])}}"
+            action="{{route('admin::update', ['id' => $oneNews->id])}}"
         @else
-        action="{{route('admin::create')}}"
+            action="{{route('admin::create')}}"
         @endif
-        method="post">
+            method="post">
         @csrf
         <label>
             <h4>Название новости</h4>
             <input name="tittle" value="{{$oneNews->tittle ?? ''}}">
         </label>
-        @error('title')
-        <div class="alert alert-danger">{{ $message }}</div>
+        @error('tittle')
+            <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <br>
         <label for="content">
@@ -28,7 +30,7 @@
         </label>
         <textarea id="content" name="content">{{$oneNews->content ?? ''}}</textarea>
         @error('content')
-        <div class="alert alert-danger">{{ $message }}</div>
+            <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <br>
         <label for="category">Категория</label>
@@ -37,7 +39,7 @@
                 <option
                     value="{{$category->id}}"
                     @if(!empty($oneNews) && ($oneNews->category_id == $category->id))
-                    selected
+                        selected
                     @endif
                 >
                     {{$category->categories}}

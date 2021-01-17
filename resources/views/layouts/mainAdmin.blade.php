@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="/css/style_product.css">
 </head>
 <body>
+{{--<div class="header">--}}
+{{--    @include('blocks.menu')--}}
+{{--</div>--}}
 <div class="container">
     <div class="header"><h1>{{__('title.pageAdmin')}}</h1></div>
     <div class="main">
@@ -17,7 +20,7 @@
     </div>
 </div>
 <div class="footer-footer">
-    <p>© Copyright - {{date('Y')}}  . All Rights Reserved.</p>
+    <p>© Copyright - {{date('Y')}} . All Rights Reserved.</p>
 </div>
 </body>
 </html>

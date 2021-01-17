@@ -18,7 +18,7 @@ use App\Http\Controllers\NewsController;
 */
 
 Route::get('/', function () {
-    echo 'Hello';
+    return view('welcome');
 });
 
 /**
