@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="/css/style_product.css">
 </head>
 <body>
-{{--<div class="header">--}}
-{{--    @include('blocks.menu')--}}
-{{--</div>--}}
+<div class="header">
+    @include('blocks.menu')
+</div>
 <div class="container">
-    <div class="header"><h1>{{__('namePage.pageAdmin')}}</h1></div>
+    <div class="header1"><h1>{{__('namePage.pageAdmin')}}</h1></div>
     <div class="main">
         @yield('content')
     </div>

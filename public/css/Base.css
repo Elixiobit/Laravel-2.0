@@ -28,18 +28,18 @@ body
 }
 
 /* Блоки навигации*/
-nav {
-	background-color: #D3E9F9;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-top: 15px;
-	padding-bottom: 15px;
+/*nav {*/
+/*	background-color: #D3E9F9;*/
+/*	padding-left: 10px;*/
+/*	padding-right: 10px;*/
+/*	padding-top: 15px;*/
+/*	padding-bottom: 15px;*/
 
-	margin: auto;
-	width:90%; /* Ширина блока*/
-	text-align:center; /* Расположение текста внутри элемента*/
-	/*border:1px solid #ccc;*/
-}
+/*	margin: auto;*/
+/*	width:90%; !* Ширина блока*!*/
+/*	text-align:center; !* Расположение текста внутри элемента*!*/
+/*	!*border:1px solid #ccc;*!*/
+/*}*/
 
 nav a {
 	display:inline;

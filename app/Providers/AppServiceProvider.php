@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $menu = [
+            [
+                'title' => 'Главная',
+                'alias' => 'home'
+            ],
+            [
+                'title' => 'Новости',
+                'alias' => 'news::categories'
+            ],
+            [
+                'title' => 'Админка',
+                'alias' => 'admin::news'
+            ],
+        ];
+        View::share('menu', $menu);
     }
 }
