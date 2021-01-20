@@ -1,9 +1,8 @@
 @extends('layouts.mainAdmin')
 
 @section('content')
-
     @if (session('success'))
-        <div style="color:red">
+        <div class="alert alert-success" role="alert">
             {{ session('success') }}
         </div>
     @endif
@@ -22,7 +21,7 @@
             <input name="tittle" value="{{$oneNews->tittle ?? ''}}">
         </label>
         @error('tittle')
-            <div class="alert alert-danger">{{ $message }}</div>
+            <div  class="alert alert-danger">{{ $message }}</div>
         @enderror
         <br>
         <label for="content">
@@ -48,7 +47,7 @@
         </select>
         <br>
         <label for="source">Источник</label>
-        <select id="source" name="source_id">
+        <select id="source" name="source_id" >
             @foreach($sources as $nameSource)
                 <option
                     value="{{$nameSource->id}}"

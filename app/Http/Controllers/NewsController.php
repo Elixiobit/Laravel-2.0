@@ -28,12 +28,11 @@ class NewsController extends Controller
             ]);
     }
 
-//    public function news(News $news) //вариант 1
-//    {
-//        return view('news.news', ['newsOne' => $news]);
-//    }
-    public function news(int $id)  //вариант 2
+    public function news(int $id)
     {
+
+        session()->push('last_viewed_page', $id);
+
         $newsOne = (new News())->getById($id);
         return view('news.news', ['newsOne' => $newsOne]);
     }

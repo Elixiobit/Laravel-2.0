@@ -8,11 +8,13 @@ use App\Models\Category;
 use App\Models\News;
 use App\Models\Source;
 use Illuminate\Http\Request;
+use const http\Client\Curl\AUTH_GSSNEG;
 
 class NewsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+//        dd(\App::getLocale());
         $news = (new News())->getNews();
         return view('admin.listNews', [
             'news' => $news,

@@ -1,5 +1,6 @@
 <?php
 return
 [
-    'pageAdmin' => 'The admin interface'
+    'pageAdmin' => 'The admin interface',
+    'nameItem' => 'News list'
 ];

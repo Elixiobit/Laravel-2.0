@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DbController;
+use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\User\RegController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
@@ -30,10 +31,7 @@ Route::group([
 ], function () {
     Route::get('/', [NewsController::class, 'index'])
         ->name('categories');
-//    Route::get('/card/{news}', [NewsController::class, 'news']) //вариант 1
-//    ->name('one')
-//    ->where('news', '[0-9]+');
-    Route::get('/card/{id}', [NewsController::class, 'news']) //вариант 2
+    Route::get('/card/{id}', [NewsController::class, 'news'])
     ->name('one')
         ->where('id', '[0-9]+');
     Route::get('/{categories}', [NewsController::class, 'categories']) //по умолчанию счет по id
@@ -66,7 +64,8 @@ Route::group([
 Route::group([
     'prefix' => '/admin',
     'as' => 'admin::',
-    'namespace' => 'App\Http\Controllers\Admin'
+    'namespace' => 'App\Http\Controllers\Admin',
+    'middleware' => 'locale'
 ], function () {
     Route::get('/', 'NewsController@index')
         ->name('news');
@@ -87,4 +86,16 @@ Route::group([
         ->name('delete');
 });
 
-Route::get('/laradb', [DbController::class, 'index']);
+Route::post('lang/', [LocaleController::class, 'changeLanguage'])
+->name('language');
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('login', '\App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', '\App\Http\Controllers\Auth\LoginController@login');
+Route::post('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
