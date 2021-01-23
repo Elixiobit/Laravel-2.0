@@ -19,5 +19,10 @@
 
 .bottom-lang{
     margin: 0;
+}
 
+.logout{
+    background-color: white;
+    border: none;
+    outline: none;
 }

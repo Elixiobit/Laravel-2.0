@@ -10,7 +10,7 @@ use App\Models\Source;
 use Illuminate\Http\Request;
 use const http\Client\Curl\AUTH_GSSNEG;
 
-class NewsController extends Controller
+class   NewsController extends Controller
 {
     public function index(Request $request)
     {

@@ -1,7 +1,10 @@
 <?php
 return
     [
-        'first' => 'main',
-        'second' => 'News',
-        'third' => 'admin'
+        'main' => 'main',
+        'News' => 'News',
+        'admin' => 'admin',
+        'login' => 'Login',
+        'logout' => 'Logout',
+        'userList' => 'User List'
     ];

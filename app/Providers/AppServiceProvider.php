@@ -28,16 +28,20 @@ class AppServiceProvider extends ServiceProvider
     {
         $menu = [
             [
-                'title' => __('nameMenu.first'),
+                'title' => 'main',
                 'alias' => 'home'
             ],
             [
-                'title' => __('nameMenu.second'),
+                'title' => 'News',
                 'alias' => 'news::categories'
             ],
             [
-                'title' => __('nameMenu.third'),
+                'title' => 'admin',
                 'alias' => 'admin::news'
+            ],
+            [
+                'title' => 'userList',
+                'alias' => 'admin::profile::userList'
             ],
 
         ];

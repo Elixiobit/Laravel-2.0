@@ -46,6 +46,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is-admin',
     ];
 
     /**
@@ -66,4 +67,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getUsers()
+    {
+        return User::orderBy('created_at', 'desc')
+            ->paginate(5);
+    }
+
+    public function getUser($id)
+    {
+        return User::find($id);
+    }
 }
