@@ -3,10 +3,12 @@
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\DbController;
 use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\User\RegController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Auth\LoginController;
+use \App\Http\Controllers\Admin\ParserController;
 use App\Http\Controllers\Auth\RegisterController;
 
 
@@ -87,6 +89,32 @@ Route::group([
 
     Route::get('/delete/{id}', 'NewsController@delete')
         ->name('delete');
+
+    Route::get('parser', [ParserController::class, 'index'])
+            ->name('parserNews');
+//    Route::get('parserrr', [ParserController::class, 'currencyExchange'])
+//        ->name('parserCurrency ');
+});
+
+
+/**
+ * Админка работы с пользователями
+ */
+Route::group([
+    'prefix' => '/admin/profile',
+    'as' => 'admin::profile::',
+    'middleware' => ['auth', 'isAdmin']
+], function () {
+    Route::get('list', [ProfileController::class, 'index'])
+        ->name('userList');
+    Route::get('create', [ProfileController::class, 'create'])
+        ->name('create');
+    Route::match(['get', 'post'], 'user', [ProfileController::class, 'update'])
+        ->name('update');
+    Route::get('register', [ProfileController::class, 'showRegistrationForm'])->name('register');
+    Route::post('register', [ProfileController::class, 'register']);
+    Route::get('delete/{id}', [ProfileController::class, 'delete'])
+        ->name('delete');
 });
 
 Route::post('/lang', [LocaleController::class, 'changeLanguage'])
@@ -103,27 +131,15 @@ Route::group([
         ->name('logout');
 });
 
-/**
- * Админка работы с пользователями
- */
 Route::group([
-    'prefix' => '/admin/profile',
-    'as' => 'admin::profile::',
-    'middleware' => ['auth', 'isAdmin']
-], function (){
-    Route::get('list', [ProfileController::class, 'index'])
-        ->name('userList');
-    Route::get('create', [ProfileController::class, 'create'])
-    ->name('create');
-    Route::match(['get', 'post'],'user',[ProfileController::class, 'update'])
-        ->name('update');
-    Route::get('register', [ProfileController::class, 'showRegistrationForm'])->name('register');
-    Route::post('register', [ProfileController::class, 'register']);
-    Route::get('delete/{id}', [ProfileController::class, 'delete'])
-        ->name('delete');
+    'prefix' => 'social',
+    'as' => 'social::',
+], function () {
+    Route::get('/login', [SocialController::class, 'loginVk'])
+        ->name('login-vk');
+    Route::get('/response', [SocialController::class, 'responseVk'])
+        ->name('response-vk');
 });
-
-
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

@@ -35,6 +35,6 @@ class Category extends Model
 
     public function news()
     {
-        return $this->hasMany(News::class, 'category_id'); // один ко многим
+        return $this->hasMany(News::class); // один ко многим
     }
 }

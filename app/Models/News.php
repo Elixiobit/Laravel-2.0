@@ -62,19 +62,31 @@ class News extends Model
 
     public function getByCategoryId(int $categories)
     {
-            return News::query()
+        return News::query()
             ->where('category_id', $categories)
             ->with(['category']) // возвращает сразу скатегорями
             ->get();
     }
 
+    public function saveParserNews($oneNews)
+    {
+            News::fill([
+                'tittle' => $oneNews['title'],
+                'content'=> $oneNews['description'],
+                'category_id' => rand(1,3),
+                'active'=> 1
+            ])->save();
+    }
+
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id'); //многие к одному
+        return $this->belongsTo(Category::class); //многие к одному
     }
 
     public function source()
     {
         return $this->belongsTo(Source::class, 'source_id');
     }
+
+
 }
