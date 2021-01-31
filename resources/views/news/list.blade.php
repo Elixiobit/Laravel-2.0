@@ -12,4 +12,5 @@
     @empty
         <h2>Пусто</h2>
     @endforelse
+    {{$newsList->links('vendor.pagination.bootstrap-4')}}
 @endsection

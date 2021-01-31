@@ -33,6 +33,7 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @foreach($menu as $item)
+                    if
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route($item['alias'])}}">{{__('nameMenu'.'.'.$item['title']) }}</a>
                     </li>

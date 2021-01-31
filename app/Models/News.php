@@ -63,9 +63,10 @@ class News extends Model
     public function getByCategoryId(int $categories)
     {
         return News::query()
+            ->orderBy('created_at', 'desc')
             ->where('category_id', $categories)
-            ->with(['category']) // возвращает сразу скатегорями
-            ->get();
+            ->with(['category']) // возвращает сразу с категорями
+            ->paginate(5);
     }
 
     public function saveParserNews($oneNews)
