@@ -27,15 +27,13 @@ class ProfileController extends Controller
         if ($request->isMethod('post')) {
             $password = $request->post('password');
             if (\Hash::check($request->post('current_password'), $user->password)) {
-//                if ($this->validate($request, $this->validateRules())) {
-                    if (!empty($password)) {
-                        $user->password = \Hash::make($password);
-                    }
-                    $user->name = $request->post('name');
-                    $user->email = $request->post('email');
-                    $user->is_admin = $request->post('isAdmin');
-                    $user->save();
-//                }
+                if (!empty($password)) {
+                    $user->password = \Hash::make($password);
+                }
+                $user->name = $request->post('name');
+                $user->email = $request->post('email');
+                $user->is_admin = $request->post('isAdmin');
+                $user->save();
             } else {
                 $errors['current_password'][] = 'Пароль указан неверно';
             }
