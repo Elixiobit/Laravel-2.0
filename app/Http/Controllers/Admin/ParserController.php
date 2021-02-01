@@ -3,29 +3,45 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\NewsParsingJob;
 use App\Models\News;
 use App\Models\User;
+use App\Services\NewsParser;
 use Illuminate\Http\Request;
-use Orchestra\Parser\Xml\Facade as XmlParser;
+use Illuminate\Support\Facades\Redis;
 
 
 class ParserController extends Controller
 {
+
     public function index()
     {
-        $xml = XmlParser::load('https://russian.rt.com/rss');
-        $date = $xml->parse([
-            'channel_title' => ['uses' => 'channel.title'],
-            'channel_categories' => ['uses' => 'channel.description'],
-            'source' => ['uses' => 'channel.link'],
-            'items' => ['uses' => 'channel.item[title,description,pubDate]'],
-        ]);
+        $start = date('c');
+        $sources = [
+            'https://news.yandex.ru/auto.rss',
+            'https://news.yandex.ru/auto_racing.rss',
+            'https://news.yandex.ru/gadgets.rss',
+            'https://news.yandex.ru/index.rss',
+            'https://news.yandex.ru/martial_arts.rss',
+            'https://news.yandex.ru/communal.rss',
+            'https://news.yandex.ru/health.rss',
+            'https://news.yandex.ru/games.rss',
+            'https://news.yandex.ru/internet.rss',
+            'https://news.yandex.ru/cyber_sport.rss',
+            'https://news.yandex.ru/movies.rss',
+            'https://news.yandex.ru/cosmos.rss',
+            'https://news.yandex.ru/culture.rss',
+            'https://news.yandex.ru/championsleague.rss',
+            'https://news.yandex.ru/music.rss',
+            'https://news.yandex.ru/nhl.rss',
+        ];
 
-        foreach ($date['items'] as $oneNews) {
-            (new News())->saveParserNews($oneNews);
+        foreach ($sources as $source) {
+            NewsParsingJob::dispatch($source);
         }
+//        return redirect()->route('news::categories');
 
-        return redirect()->route('news::categories');
+
     }
 
     public function currencyExchange()

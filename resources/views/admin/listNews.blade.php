@@ -6,7 +6,7 @@
         /**   @var $oneNews **/
             $url = route('admin::update', ['id' => $oneNews->id]);
         @endphp
-        <div><a href='{{$url}}'><h1>{{$oneNews->tittle}}</h1></a></div> <br>
+        <div><a href='{{$url}}'><p>{{$oneNews->tittle}}</p></a></div> <br>
         <p>
             @php
                 /**   @var $oneNews **/
